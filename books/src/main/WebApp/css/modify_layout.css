@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+
+.modify {
+	display: inline-block;
+	width: 709px;
+	border: 1px solid #DDDDDD;
+	margin-right: 3px;
+	
+}
+
+.modify > form > .bookName > input {
+	width: 630px;
+	height: 30px;
+	margin: 3px
+}
+.modify > form > .bookName {
+	text-align: center;
+}
+
+.modify > form > .bookSubName > input {
+	width: 630px;
+	height: 30px;
+	margin-bottom: 3px
+}
+.modify > form > .bookSubName {
+	text-align: center;
+}
+
+.modify > form > .index > textarea {
+	width: 630px;
+	height: 600px;
+	margin-bottom: 3px
+}
+.modify > form > .index {
+	text-align: center;
+}
+
+.modify > form > .submit {
+	text-align: right;
+}

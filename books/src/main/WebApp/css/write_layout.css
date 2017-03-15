@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+
+.write {
+	
+	width: 706px;
+	margin-right: 3px;
+	display: inline-block;
+	border: 1px solid #DDDDDD;
+	
+}
+
+.write > hr {
+	border: 1px dashed #DDDDDD;
+}
+
+.write > h1 {
+	
+	text-align:center;
+	
+}
+
+.write > .writer > form > .bookName > input {
+	margin: 0px;
+	width: 650px;
+	height: 30px
+	
+}
+.write > .writer > form > .bookName {
+	text-align:center;
+	margin-bottom: 3px;
+}
+
+.write > .writer > form > .subName > input {
+	margin: 0px;
+	width: 650px;
+	height: 30px
+	
+}
+
+.write > .writer > form > .subName {
+	text-align:center;
+	margin-bottom: 3px;
+}
+
+.write > .writer > form > .index > textarea{
+	width: 650px;
+	height: 600px;
+}
+
+.write > .writer > form > .index {
+	text-align: center;
+}
+
+.write > .writer > form > .submit {
+	margin: 5px;
+	text-align: right;
+}
+

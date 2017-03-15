@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+
+* {
+	color: #333333;
+}
+
+div, input, td, th, span, a, p, textarea, li, button, dt, dl, dd, ul, ol, body{
+	font-size: 9pt;
+}
+
+#wrapper { /*우리가 사용할 크기 지정*/
+	width: 964px;
+	overflow: hidden; /*만약 964px 넘으면 잘라버려라.*/
+	margin: 0 auto; /*옆쪽에 남아있는 px를 정확히 반으로 나눠서 분*/ 
+}
+
+#nav {
+	width: 100%;
+	background-color: #55CC55;
+	padding: 10px;
+	padding-left:15px; /*왼쪽의 15px만 더 띄워준다.*/
+	margin-bottom: 3px;
+	font-size: 9pt;
+}
+/*자식 엘리멘트 : nav에 있는 a 에만 안에있는 속성을 준다.*/
+#nav > a{
+	color: #FFFF00;
+	font-weight: bold;
+	font-size: 11pt;
+	
+}
+
+#content {
+	width: 100%;
+}
+
+body {
+	/* 레이아웃의 맨 마지막칸을 없앤다. */
+	margin: 0px;
+}
+
+table{
+	width: 100%;
+	/* 경계선 압축 */
+	border-collapse: collapse;
+	
+}
+
+th {
+	text-align: center;
+	font-weight: bold;
+	background-color: powderblue;
+	padding: 6px;
+	font-size:9pt;
+}
+
+td {
+	padding: 6px;
+	font-size:9pt;
+}
