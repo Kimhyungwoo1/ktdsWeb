@@ -4,6 +4,7 @@ import com.melon.admin.authorization.vo.AuthorizationVO;
 
 public class UserVO {
 
+	private int index;
 	private String userId;
 	private String userName;
 	private String userPassword;
@@ -12,6 +13,14 @@ public class UserVO {
 	
 	private AuthorizationVO authorizationVO;
 
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+	
 	public AuthorizationVO getAuthorizationVO() {
 		if ( authorizationVO == null ) {
 			authorizationVO = new AuthorizationVO();

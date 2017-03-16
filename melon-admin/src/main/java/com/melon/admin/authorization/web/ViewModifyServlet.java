@@ -49,6 +49,13 @@ public class ViewModifyServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String json = gson.toJson(map);
 		
+		/*
+		 * {
+		 * 		status : 'success',
+		 * 		authorizationId = 'at-2013311232-123124123
+		 * }
+		 */
+		
 		PrintWriter writer = response.getWriter();
 		writer.write(json);
 		writer.flush();

@@ -102,7 +102,7 @@ public class UserDaoImpl implements UserDao {
 			query.append(" 								, A.PRNT_ATHRZTN_ID ");
 			query.append(" 						FROM	USR U ");
 			query.append(" 								, ATHRZTN A ");
-			query.append(" 						WHERE	U.ATHRZTN_ID = A.ATHRZTN_ID ");
+			query.append(" 						WHERE	U.ATHRZTN_ID = A.ATHRZTN_ID (+) ");
 			query.append(" 					) A ");
 			query.append(" 			WHERE	ROWNUM <= ? ");
 			query.append(" 		) ");
@@ -118,6 +118,7 @@ public class UserDaoImpl implements UserDao {
 			UserVO userVO = null;
 			while (rs.next()) {
 				userVO = new UserVO();
+				userVO.setIndex(rs.getInt("RNUM"));
 				userVO.setUserId(rs.getString("USR_ID"));
 				userVO.setUserName(rs.getString("USR_NM"));
 				userVO.setUserPassword(rs.getString("USR_PWD"));
@@ -181,7 +182,7 @@ public class UserDaoImpl implements UserDao {
 			query.append(" 			, A.PRNT_ATHRZTN_ID ");
 			query.append(" FROM		USR U ");
 			query.append(" 			, ATHRZTN A ");
-			query.append(" WHERE	U.ATHRZTN_ID = A.ATHRZTN_ID ");
+			query.append(" WHERE		U.ATHRZTN_ID = A.ATHRZTN_ID (+) ");
 			query.append(" AND		U.USR_ID = ?  ");
 			
 			stmt = conn.prepareStatement(query.toString());
@@ -252,7 +253,7 @@ public class UserDaoImpl implements UserDao {
 			query.append("			, A.PRNT_ATHRZTN_ID ");
 			query.append(" FROM		USR U ");
 			query.append(" 			, ATHRZTN A ");
-			query.append(" WHERE	U.ATHRZTN_ID = A.ATHRZTN_ID ");
+			query.append(" WHERE		U.ATHRZTN_ID = A.ATHRZTN_ID (+) ");
 			query.append(" AND		USR_ID = ? ");
 			query.append(" AND		USR_PWD = ? ");
 
@@ -316,10 +317,10 @@ public class UserDaoImpl implements UserDao {
 			StringBuffer query = new StringBuffer();
 			query.append(" UPDATE	USR ");
 			query.append(" SET		USR_ID = ? ");
-			query.append(" 		, USR_NM = ? ");
-			query.append(" 		, USR_PWD = ? ");
-			query.append(" 		, USR_PNT = ? ");
-			query.append(" 		, ATHRZTN_ID = ? ");
+			query.append(" 			, USR_NM = ? ");
+			query.append(" 			, USR_PWD = ? ");
+			query.append(" 			, USR_PNT = ? ");
+			query.append(" 			, ATHRZTN_ID = ? ");
 			query.append(" WHERE 	USR_ID = ? ");
 			
 			stmt = conn.prepareStatement(query.toString());
@@ -366,7 +367,7 @@ public class UserDaoImpl implements UserDao {
 			StringBuffer query = new StringBuffer();
 			query.append(" DELETE ");
 			query.append(" FROM		USR ");
-			query.append(" WHERE	USR_ID = ? ");
+			query.append(" WHERE		USR_ID = ? ");
 			
 			stmt = conn.prepareStatement(query.toString());
 			stmt.setString(1, userId);

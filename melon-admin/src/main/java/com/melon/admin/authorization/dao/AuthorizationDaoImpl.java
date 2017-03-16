@@ -24,7 +24,7 @@ public class AuthorizationDaoImpl implements AuthorizationDao {
 			@Override
 			public String query() {
 				StringBuffer query = new StringBuffer();
-				query.append(" SELECT	'AT-' || TO_CHAR(SYSDATE, 'YYYYMMDDHH24') || '-' || LPAD (ATHRZTIN_ID_SEQ.NEXTVAL, 6, '0') SEQ ");
+				query.append(" SELECT	'AT-' || TO_CHAR(SYSDATE, 'YYYYMMDDHH24') || '-' || LPAD (ATHRZTN_ID_SEQ.NEXTVAL, 6, '0') SEQ ");
 				query.append(" FROM		DUAL ");
 				return query.toString();
 			}
@@ -168,6 +168,7 @@ public class AuthorizationDaoImpl implements AuthorizationDao {
 			query.append(" 								, ATHRZTN_NM ");
 			query.append(" 								, PRNT_ATHRZTN_ID ");
 			query.append(" 						FROM	ATHRZTN ");
+			query.append(" 						ORDER	BY ATHRZTN_ID DESC ");
 			query.append(" 						) A ");
 			query.append(" 				WHERE	ROWNUM <= ? ");
 			query.append(" 				) ");

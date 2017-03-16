@@ -67,4 +67,44 @@
     <servlet-name>ViewModifyServlet</servlet-name>
     <url-pattern>/authorization/modify</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewAndDoUserListServlet</display-name>
+    <servlet-name>ViewAndDoUserListServlet</servlet-name>
+    <servlet-class>com.melon.admin.user.web.ViewAndDoUserListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewAndDoUserListServlet</servlet-name>
+    <url-pattern>/user/list</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewAndDoUserDetailServlet</display-name>
+    <servlet-name>ViewAndDoUserDetailServlet</servlet-name>
+    <servlet-class>com.melon.admin.user.web.ViewAndDoUserDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewAndDoUserDetailServlet</servlet-name>
+    <url-pattern>/user/detail</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoUserModifyActionServlet</display-name>
+    <servlet-name>DoUserModifyActionServlet</servlet-name>
+    <servlet-class>com.melon.admin.user.web.DoUserModifyActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoUserModifyActionServlet</servlet-name>
+    <url-pattern>/user/modify</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoSelectAuthorizationChangeServlet</display-name>
+    <servlet-name>DoSelectAuthorizationChangeServlet</servlet-name>
+    <servlet-class>com.melon.admin.user.web.DoSelectAuthorizationChangeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoSelectAuthorizationChangeServlet</servlet-name>
+    <url-pattern>/authorization/change</url-pattern>
+  </servlet-mapping>
 </web-app>
