@@ -21,4 +21,8 @@ public interface UserService {
 	
 	public boolean deleteOneUser(String userId);
 	
+	public boolean updateAllUser(String authAfter, String authBefore);
+	
+	public boolean updateUserAuthorization(String[] userId, String authAfter, String authBefore);
+	
 }

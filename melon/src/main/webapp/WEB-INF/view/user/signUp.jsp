@@ -17,11 +17,11 @@
 				var jsonObj = JSON.parse(response);
 				console.log(jsonObj);
 
-				if (jsonObj.duplicate) {
+				/* if (jsonObj.duplicate) {
 					$("#duplicateState").text("이미 사용중인 ID입니다...");
 				} else {
 					$("#duplicateState").text("사용 가능...");
-				}
+				} */
 			});
 		});
 		$("#signUpButtom").click(function() {
@@ -48,7 +48,7 @@
 			}, function(response) {
 				
 				var jsonObj = JSON.parse(responce)
-
+				console.log(jsonObj);
 				if (response.duplicate) {
 					alert("입력한 ID는 이미 사용 중입니다.\n다른 ID를 사용해 주세요");
 					return;

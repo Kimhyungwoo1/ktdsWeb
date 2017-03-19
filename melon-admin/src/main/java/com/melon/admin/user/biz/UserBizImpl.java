@@ -57,4 +57,9 @@ public class UserBizImpl implements UserBiz{
 		return userDao.deleteOneUser(userId) > 0;
 	}
 
+	@Override
+	public boolean updateAllAuthorization(String authAfter, String authBefore) {
+		return userDao.updateAllAuthorization(authAfter, authBefore) > 0;
+	}
+
 }

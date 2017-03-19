@@ -31,4 +31,5 @@ public interface UserDao {
 	
 	public int selectCountUserId(UserSearchVO userSearchVO);
 	
+	public int updateAllAuthorization(String authAfter, String authBefore);
 }

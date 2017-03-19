@@ -13,7 +13,7 @@ import com.melon.music.vo.MusicVO;
 
 public class MusicDaoImpl implements MusicDao {
 
-	private String oracleUrl = "jdbc:oracle:thin:@172.20.10.9:1521:XE";
+	private String oracleUrl = "jdbc:oracle:thin:@192.168.0.44:1521:XE";
 
 	@Override
 	public int insertNewMusic(MusicVO musicVO) {

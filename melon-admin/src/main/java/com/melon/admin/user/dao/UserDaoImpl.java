@@ -5,11 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.melon.admin.user.vo.UserSearchVO;
 import com.melon.admin.user.vo.UserVO;
+import com.sun.glass.ui.CommonDialogs.Type;
 
 public class UserDaoImpl implements UserDao {
 
@@ -428,6 +430,59 @@ public class UserDaoImpl implements UserDao {
 				}
 			} catch (SQLException e) {
 			}
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+	}
+
+	@Override
+	public int updateAllAuthorization(String authBefore, String authAfter) {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(oracleUrl, "MELON", "melon");
+			
+			StringBuffer query = new StringBuffer();
+			query.append(" UPDATE	USR ");
+			query.append(" SET		ATHRZTN_ID = ? ");
+			if ( authBefore == null || authBefore.length() == 0){
+				query.append(" WHERE		ATHRZTN_ID IS NULL");
+			}
+			else {
+				query.append(" WHERE		ATHRZTN_ID = ? ");
+			}
+			
+			stmt = conn.prepareStatement(query.toString());
+			
+			if ( authBefore == null || authBefore.length() == 0){
+				stmt.setString(1, authAfter);
+			}
+			else {
+				stmt.setString(1, authAfter);
+				stmt.setString(2, authBefore);
+			}
+			
+			return stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			try {
 				if (stmt != null) {
 					stmt.close();

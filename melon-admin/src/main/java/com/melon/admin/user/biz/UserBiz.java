@@ -18,4 +18,6 @@ public interface UserBiz {
 	public boolean updateUser(UserVO userVO);
 	
 	public boolean deleteOneUser(String userId);
+	
+	public boolean updateAllAuthorization(String authAfter, String authBefore);
 }

@@ -89,7 +89,7 @@ public class UserDaoImpl implements UserDao{
 			query.append(" 			, USR_NM ");
 			query.append("			, USR_PNT ");
 			query.append(" FROM		USR ");
-			query.append(" WHERE	USR_ID = ? ");
+			query.append(" WHERE		USR_ID = ? ");
 			query.append(" AND		USR_PWD = ? ");
 
 			stmt = conn.prepareStatement(query.toString());

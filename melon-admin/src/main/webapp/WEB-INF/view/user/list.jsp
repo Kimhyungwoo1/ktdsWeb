@@ -9,10 +9,11 @@
 <script type="text/javascript" src="/melon-admin/static/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 	$().ready(function() {
+		
 		$("#allAuth").find("input[type=button]").click(function(){ 
 			$("#allAuth").attr({
 				"method" : "post",
-				"src" : "/melon-admin/authorization/change"
+				"action" : "/melon-admin/authorization/change"
 			});
 			$("#allAuth").submit();
 		});
@@ -22,26 +23,9 @@
 <body>
 	<p>${userCount}명의 아티스트가 검색되었습니다.</p>
 	
-	<form id="allAuth">
-		<select id="authChange">
-			<option value=""></option>
-			<c:forEach items="${authList}" var="authList">
-				<option value="${authList.authorizationId}">${authList.authorizationName}</option>
-			</c:forEach>
-		</select>
-		<span>권한을</span>
-		<select>
-			<option value=""></option>
-			<c:forEach items="${authList}" var="authList">
-				<option value="${authList.authorizationId}">${authList.authorizationName}</option>
-			</c:forEach>
-		</select>
-		<span>로</span>
-		<input type="button" value="변경"/>
-	</form>
-	
 	<table>
 		<tr>
+			<td><input type="hidden"/>
 			<td>번호</td>
 			<td>ID</td>
 			<td>이름</td>
@@ -51,6 +35,7 @@
 		
 		<c:forEach items="${userList}" var="user">
 			<tr>
+				<td><input type="checkbox" name="authCheck" value="${user.userId}" /></td>
 				<td>${user.index}</td>
 				<td>
 					<a href="/melon-admin/user/detail?userId=${user.userId}">${user.userId}</a>
@@ -67,6 +52,24 @@
 			${pager}
 		</form>
 	</div>
+	
+	<form id="allAuth">
+		<select name="authBefore">
+			<option value="">권한없음</option>
+			<c:forEach items="${authList}" var="authList">
+				<option value="${authList.authorizationId}">${authList.authorizationName}</option>
+			</c:forEach>
+		</select>
+		<span>권한을</span>
+		<select name="authAfter">
+			<option value="">권한없음</option>
+			<c:forEach items="${authList}" var="authList">
+				<option value="${authList.authorizationId}">${authList.authorizationName}</option>
+			</c:forEach>
+		</select>
+		<span>로</span>
+		<input type="button" value="변경"/>
+	</form>
 
 </body>
 </html>

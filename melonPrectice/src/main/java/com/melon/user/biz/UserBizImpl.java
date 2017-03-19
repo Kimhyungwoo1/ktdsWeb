@@ -16,14 +16,15 @@ public class UserBizImpl implements UserBiz{
 	public boolean registNewUser(UserVO userVO) {
 		boolean isSuccess = userDao.insertNewUser(userVO) > 0;
 		
-		if ( managePoint ) {
-			
+		if ( isSuccess ) {
+			isSuccess = managePoint(userVO.getUserId(), 300);
 		}
+		return isSuccess;
 	}
 
 	@Override
 	public UserVO loginUser(UserVO userVO) {
-		return null;
+		UserVO loginUser = userDao.selectOneUser(userVO) > 0;
 	}
 
 	@Override

@@ -1,7 +1,8 @@
 package com.melon.admin.user.web;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,11 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.melon.admin.user.service.UserService;
 import com.melon.admin.user.service.UserServiceImpl;
-import com.melon.admin.user.vo.UserVO;
 
 public class DoSelectAuthorizationChangeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserService userService;
+
 	public DoSelectAuthorizationChangeServlet() {
 		userService = new UserServiceImpl();
 	}
@@ -26,18 +27,33 @@ public class DoSelectAuthorizationChangeServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		String authBefore = request.getParameter("authBefore");
+		String authAfter = request.getParameter("authAfter");
+		String[] checkAuth = request.getParameterValues("authCheck");		// 체크박스의 value 값을 가져오는 것
+		
+		System.out.println(checkAuth[0]);
+		System.out.println(checkAuth[1]);
+		
+		boolean userCheckUpdate = userService.updateUserAuthorization(checkAuth, authAfter, authBefore);
+		
+		boolean userUpdates = userService.updateAllUser(authBefore, authAfter);
 
-		String userId = request.getParameter("userId");
-		String authorizationId = request.getParameter("authorizationId");
-		
-		UserVO userVO = new UserVO();
-		List<UserVO> userList = (List<UserVO>) userService.getOneUser(userId);
-		for (int i = 0; i >userList.size(); i++ ){
-			userVO.getAuthorizationId() = authorizationId;
+		if (Arrays.toString(checkAuth).equals("{}")){
+			if ( userUpdates ) {
+				response.sendRedirect("/melon-admin/user/list");
+			}
 		}
+		else if (checkAuth != null){
+			if( userCheckUpdate ){
+				response.sendRedirect("/melon-admin/user/list");
+			}
+		}
+			
 		
 		
 		
+
 	}
 
 }
