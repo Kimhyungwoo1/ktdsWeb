@@ -13,7 +13,7 @@ public class UserVO {
 	private AuthorizationVO authorizationVO;
 
 	public AuthorizationVO getAuthorizationVO() {
-		if ( authorizationVO != null ){
+		if ( authorizationVO == null ){
 			authorizationVO = new AuthorizationVO();
 		}
 		return authorizationVO;

@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+#likeCountss {
+	height : 0px
+}
+
+#likeCounts {
+	
+	display : inline-block;
+}
+
+#total {
+	background-color : #F7F7F7;
+	margin : auto;
+	width : 650px;
+	height : 900px;
+	border: 1px solid #DDDDDD;
+	text-align : center;
+}
+
+#notes {
+	display : inline-block;
+	margin-top : 5px;
+}
+
+#title {
+	display : inline-block;
+}
+
+#title > h1{
+	display : inline-block;
+	margin : 0 auto;
+	text-align : center;
+}
+
+#range {
+	width : 400px;
+}
+
+#pre {
+	margin : 2px;
+	height : 53px;
+}
+
+#textarea {
+	width : 390px;
+	height : 200px;
+	resize : none;
+}

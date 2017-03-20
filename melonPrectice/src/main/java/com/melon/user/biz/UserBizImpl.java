@@ -24,7 +24,14 @@ public class UserBizImpl implements UserBiz{
 
 	@Override
 	public UserVO loginUser(UserVO userVO) {
-		UserVO loginUser = userDao.selectOneUser(userVO) > 0;
+		UserVO loginUser = userDao.selectOneUser(userVO);
+		
+		if ( loginUser != null ) {
+			managePoint(userVO.getUserId(), 10);
+			int point = userVO.getUserPoint();
+			userVO.setUserPoint(point);
+		}
+		return loginUser;
 	}
 
 	@Override

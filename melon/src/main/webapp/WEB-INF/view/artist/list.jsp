@@ -12,6 +12,7 @@
 <script type="text/javascript" src="/melon/static/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 	$().ready(function() {
+		<c:if test="${isAdminUser || isOperatorUser}">
 		$("input[type=button]").click(function() {
 			
 			var writeDiv = $("<div id='writeDiv'></div>");
@@ -29,12 +30,19 @@
 			$(this).before(writeDiv);
 			
 		});
+		</c:if>
 	});
 </script>
 </head>
 <body>
 	
-	<input type="button" value="아티스트 등록" />
+	<c:choose>
+		<c:when test="${isAdminUser || isOperatorUser}" >
+			<input type="button" value="아티스트 등록" />
+		</c:when>
+	</c:choose>
+	
+	<a href="/melon-admin/user/rank">Like Rank</a>
 	
 	<p>${artistCount}명의 아티스트가 검색되었습니다.</p>
 

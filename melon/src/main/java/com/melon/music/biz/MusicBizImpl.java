@@ -16,7 +16,12 @@ public class MusicBizImpl implements MusicBiz{
 	public MusicBizImpl () {
 		musicDao = new MusicDaoImpl();
 	}
-
+	
+	@Override
+	public boolean updateLikeCount(String musicId) {
+		return musicDao.updateLikeCount(musicId) > 0;
+	}
+	
 	@Override
 	public boolean addNewMusic(MusicVO musicVO) {
 		return musicDao.insertNewMusic(musicVO) > 0;

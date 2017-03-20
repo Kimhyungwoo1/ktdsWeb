@@ -15,4 +15,6 @@ public interface MusicBiz {
 	
 	public boolean deleteOneMusic(String musicId);
 	
+	public boolean updateLikeCount(String musicId);
+	
 }

@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao {
 			conn = DriverManager.getConnection(oracleUrl, "MELON", "melon");
 
 			StringBuffer query = new StringBuffer();
-			query.append(" INSERT		INTO	USR ( ");
+			query.append(" INSERT		INTO		USR ( ");
 			query.append(" 						USR_ID ");
 			query.append(" 						, USR_NM ");
 			query.append(" 						, USR_PWD ");
@@ -256,6 +256,7 @@ public class UserDaoImpl implements UserDao {
 			query.append(" FROM		USR U ");
 			query.append(" 			, ATHRZTN A ");
 			query.append(" WHERE		U.ATHRZTN_ID = A.ATHRZTN_ID (+) ");
+			query.append(" AND		U.ATHRZTN_ID = 'AT-2017032009-000002' ");
 			query.append(" AND		USR_ID = ? ");
 			query.append(" AND		USR_PWD = ? ");
 

@@ -107,4 +107,14 @@
     <servlet-name>DoSelectAuthorizationChangeServlet</servlet-name>
     <url-pattern>/authorization/change</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewMusicServlet</display-name>
+    <servlet-name>ViewMusicServlet</servlet-name>
+    <servlet-class>com.melon.admin.music.web.ViewMusicServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewMusicServlet</servlet-name>
+    <url-pattern>/user/rank</url-pattern>
+  </servlet-mapping>
 </web-app>

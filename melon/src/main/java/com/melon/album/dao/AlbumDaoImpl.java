@@ -13,7 +13,7 @@ import com.melon.album.vo.AlbumVO;
 
 public class AlbumDaoImpl implements AlbumDao {
 
-	private String oracleUrl = "jdbc:oracle:thin:@192.168.0.44:1521:XE";
+	private String oracleUrl = "jdbc:oracle:thin:@172.20.10.9:1521:XE";
 
 	@Override
 	public int insertNewAlbum(AlbumVO albumVO) {

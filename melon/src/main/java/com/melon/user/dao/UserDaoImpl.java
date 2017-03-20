@@ -10,7 +10,7 @@ import com.melon.user.vo.UserVO;
 
 public class UserDaoImpl implements UserDao {
 
-	private String oracleUrl = "jdbc:oracle:thin:@192.168.0.44:1521:XE";
+	private String oracleUrl = "jdbc:oracle:thin:@172.20.10.9:1521:XE";
 
 	@Override
 	public int insertNewUser(UserVO userVO) {
@@ -33,12 +33,14 @@ public class UserDaoImpl implements UserDao {
 			query.append("						, USR_PWD ");
 			query.append("						, USR_NM ");
 			query.append("						, USR_PNT ");
+			query.append("						, ATHRZTN_ID ");
 			query.append("						)");
 			query.append(" VALUES				(");
 			query.append("						? ");
 			query.append("						, ? ");
 			query.append("						, ? ");
 			query.append(" 						, 0 ");
+			query.append(" 						, 'AT-2017032009-000003' ");
 			query.append(" 						)");
 
 			stmt = conn.prepareStatement(query.toString());
@@ -94,7 +96,7 @@ public class UserDaoImpl implements UserDao {
 			query.append("			, A.PRNT_ATHRZTN_ID ");
 			query.append(" FROM		USR U ");
 			query.append(" 			, ATHRZTN A ");
-			query.append(" WHERE	U.ATHRZTN_ID = A.ATHRZTN_ID ");
+			query.append(" WHERE		A.ATHRZTN_ID = U.ATHRZTN_ID ");
 			query.append(" AND		USR_ID = ? ");
 			query.append(" AND		USR_PWD = ? ");
 
@@ -104,19 +106,20 @@ public class UserDaoImpl implements UserDao {
 
 			rs = stmt.executeQuery();
 
+			UserVO loginUserVO = null;
 			if (rs.next()) {
-				userVO = new UserVO();
-				userVO.setUserId(rs.getString("USR_ID"));
-				userVO.setUserPassword(rs.getString("USR_PWD"));
-				userVO.setUserName(rs.getString("USR_NM"));
-				userVO.setUserPoint(rs.getInt("USR_PNT"));
-				userVO.setAuthorizationId(rs.getString("ATHRZTN_ID"));
+				loginUserVO = new UserVO();
+				loginUserVO.setUserId(rs.getString("USR_ID"));
+				loginUserVO.setUserPassword(rs.getString("USR_PWD"));
+				loginUserVO.setUserName(rs.getString("USR_NM"));
+				loginUserVO.setUserPoint(rs.getInt("USR_PNT"));
+				loginUserVO.setAuthorizationId(rs.getString("U_ATHRZTN_ID"));
 				
-				userVO.getAuthorizationVO().setAuthorizationId(rs.getString("ATHRZTN_ID"));
-				userVO.getAuthorizationVO().setAuthorizationName(rs.getString("ATHRZTN_NM"));
-				userVO.getAuthorizationVO().setParentAuthorizationId(rs.getString("PRNT_ATHRZTN_ID"));
+				loginUserVO.getAuthorizationVO().setAuthorizationId(rs.getString("ATHRZTN_ID"));
+				loginUserVO.getAuthorizationVO().setAuthorizationName(rs.getString("ATHRZTN_NM"));
+				loginUserVO.getAuthorizationVO().setParentAuthorizationId(rs.getString("PRNT_ATHRZTN_ID"));
 			}
-			return userVO;
+			return loginUserVO;
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);

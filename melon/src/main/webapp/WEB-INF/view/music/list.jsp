@@ -9,6 +9,7 @@
 <script type="text/javascript" src="/melon/static/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 	$().ready(function() {
+		<c:if test="${isAdminUser || isOperatorUser}">
 		$("input[type=button]").click(function() {
 			window.open("/melon/music/write?albumId=${param.albumId}", "음악 등록", "resizable=no,scrollbars=yes,toolbar=no,width=300px,height=500px,menubars=no")
 		});
@@ -25,12 +26,19 @@
 			$("#mp3player").find("video")[0].play();
 			
 		});
-		
+		</c:if>
 	});
 </script>
 </head>
 <body>
-	<input type="button" value="MP3 추가">
+
+	<c:choose>
+		<c:when test="${isOperatorUser || isAdminUser}">
+			<input type="button" value="MP3 추가">
+		</c:when>
+	</c:choose>
+
+	
 	<p>총 ${totalCount}건의 음악이 검색되었습니다.</p>
 	<table>
 		<tr>

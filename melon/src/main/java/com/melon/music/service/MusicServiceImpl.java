@@ -21,6 +21,11 @@ public class MusicServiceImpl implements MusicService{
 	}
 
 	@Override
+	public boolean updateLikeCount(String musicId) {
+		return musicBiz.updateLikeCount(musicId);
+	}
+	
+	@Override
 	public boolean addNewMusic(MusicVO musicVO) {
 		return musicBiz.addNewMusic(musicVO);
 	}
@@ -33,14 +38,14 @@ public class MusicServiceImpl implements MusicService{
 	@Override
 	public MusicVO getOneMusic(String musicId, UserVO userVO) {
 		
-		MusicVO music = musicBiz.getOneMusic(musicId);
-		if ( music != null ) {
-			userBiz.managePoint(userVO.getUserId(), -5);
-			int userPoint = userVO.getUserPoint();
-			userVO.setUserPoint(userPoint - 5);
-		}
 		
-		return music;
+//		if ( music != null ) {
+//			userBiz.managePoint(userVO.getUserId(), -5);
+//			int userPoint = userVO.getUserPoint();
+//			userVO.setUserPoint(userPoint - 5);
+//		}
+		
+		return musicBiz.getOneMusic(musicId);
 	}
 
 	@Override

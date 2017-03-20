@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="/melon/static/js/jquery-3.1.1.min.js"></script>
-<script tytp="text/javascript">
+<script type="text/javascript">
 	$().ready(function () {
 		$("#writeForm").find("input[type=button]").click(function() {
 			$.post("/melon/artist/write", 

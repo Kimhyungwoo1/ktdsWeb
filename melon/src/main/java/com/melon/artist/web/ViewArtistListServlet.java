@@ -8,13 +8,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.melon.artist.biz.ArtistBiz;
 import com.melon.artist.biz.ArtistBizImpl;
 import com.melon.artist.vo.ArtistSearchVO;
 import com.melon.artist.vo.ArtistVO;
+import com.melon.common.constants.AuthConst;
 import com.melon.common.web.pager.ClassicPageExplorer;
 import com.melon.common.web.pager.PageExplorer;
+import com.melon.user.vo.UserVO;
 
 public class ViewArtistListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -43,6 +46,14 @@ public class ViewArtistListServlet extends HttpServlet {
 		request.setAttribute("artistList", artistList);
 		request.setAttribute("artistCount", artistSearchVO.getPager().getTotalArticleCount());
 		request.setAttribute("pager", pager.getPagingList("pageNo", "[@]", "이전", "다음", "searchFrom"));
+		
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("_USER_");
+		
+		//forward 하는 page에선 권한 구분하는 것이 다 필요
+		request.setAttribute("isNormalUser", userVO.getAuthorizationId().equals(AuthConst.NOMAL_USER) );
+		request.setAttribute("isOperatorUser", userVO.getAuthorizationId().equals(AuthConst.OPERATOR_USER));
+		request.setAttribute("isAdminUser", userVO.getAuthorizationId().equals(AuthConst.ADMIN_USER));
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/artist/list.jsp");
 		dispatcher.forward(request, response);

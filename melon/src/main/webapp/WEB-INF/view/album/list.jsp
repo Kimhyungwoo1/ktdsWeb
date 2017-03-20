@@ -9,15 +9,22 @@
 <script type="text/javascript" src="/melon/static/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 	$().ready(function() {
+		<c:if test="${isAdminUser || isOperatorUser}">
 		$("input[type=button]").click(function() {
 			window.open("/melon/album/write?artistId=${param.artistId}", "엘범 등록", "resizable=no,scrollbars=yes,toolbar=no,width=300px,height=500px,menubars=no")
 		});
+		</c:if>
 	});
 </script>
 </head>
 <body>
-
-	<input type="button" value="엘범 등록"/><br/>
+	
+	<c:choose>
+		<c:when test="${isOperatorUser || isAdminUser}">
+			<input type="button" value="엘범 등록"/><br/>
+		</c:when>
+	</c:choose>
+	
 	<table>
 		<tr>
 			<c:forEach items="${albumList}" var="album" varStatus="index"> <!-- varStatus 반복할때 쓴다. -->

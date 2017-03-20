@@ -13,8 +13,51 @@ import com.melon.music.vo.MusicVO;
 
 public class MusicDaoImpl implements MusicDao {
 
-	private String oracleUrl = "jdbc:oracle:thin:@192.168.0.44:1521:XE";
+	private String oracleUrl = "jdbc:oracle:thin:@172.20.10.9:1521:XE";
 
+	@Override
+	public int updateLikeCount(String musicId) {
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(oracleUrl, "MELON", "melon");
+			
+			StringBuffer query = new StringBuffer();
+			query.append(" UPDATE		MSC");
+			query.append(" SET		LK_CNT = LK_CNT + 1 ");
+			query.append(" WHERE		MSC_ID = ? ");
+			
+			stmt = conn.prepareStatement(query.toString());
+			stmt.setString(1, musicId);
+			
+			return stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+	}
+	
 	@Override
 	public int insertNewMusic(MusicVO musicVO) {
 

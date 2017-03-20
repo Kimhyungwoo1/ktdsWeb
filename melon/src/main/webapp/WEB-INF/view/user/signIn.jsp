@@ -12,7 +12,7 @@
 			$("#signIn").attr(
 					{
 						"method" : "post",
-						"action" : "/melon/user/signIn?userId=${param.userId}"
+						"action" : "/melon/user/signIn"
 					});
 			$("#signIn").submit();
 		});
@@ -27,8 +27,8 @@
 <body>
 	
 	<form id="signIn">
-		<input type="text" name="userId" placeholder="아이디입력하세요." /><br/>
-		<input type="password" name="userPassword" placeholder="비밀번호입력하세요." /><br/>
+		<input type="text" id ="userId" name="userId" placeholder="ID"/><br/>
+		<input type="password" name="userPassword" placeholder="password" /><br/>
 		<input type="button" value="login" />
 	</form>
 		<div class="signUp">

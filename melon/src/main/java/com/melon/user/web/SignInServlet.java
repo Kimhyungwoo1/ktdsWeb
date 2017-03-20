@@ -40,11 +40,15 @@ public class SignInServlet extends HttpServlet {
 		userVO.setUserId(userId);
 		userVO.setUserPassword(userPassword);
 		
-		userVO = userService.loginUser(userVO);
+		System.out.println(userId);
+		System.out.println(userPassword);
 		
-		if ( userVO != null ) {
-			HttpSession session = request.getSession();
-			session.setAttribute("_USER_", userVO);
+		UserVO loginUserVO = new UserVO();
+		loginUserVO = userService.loginUser(userVO);
+		
+		if ( loginUserVO != null ) {
+			HttpSession session = request.getSession(true);
+			session.setAttribute("_USER_", loginUserVO);
 			response.sendRedirect("/melon/artist/list");
 		}
 		else {
