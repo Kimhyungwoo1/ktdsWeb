@@ -16,6 +16,57 @@ public class MusicDaoImpl implements MusicDao {
 	private String oracleUrl = "jdbc:oracle:thin:@172.20.10.9:1521:XE";
 
 	@Override
+	public int updateOneMusic(MusicVO musicVO) {
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(oracleUrl, "MELON", "melon");
+			
+			StringBuffer query = new StringBuffer();
+			query.append(" UPDATE		MSC ");
+			query.append(" SET			TTL = ? ");
+			query.append(" 				, MSCN = ? ");
+			query.append(" 				, DRTR = ? ");
+			query.append(" 				, LRCS = ? ");
+			query.append(" 				, MP3_FL = ? ");
+			query.append(" WHERE			MSC_ID = ? ");
+			stmt = conn.prepareStatement(query.toString());
+			stmt.setString(1, musicVO.getTitle());
+			stmt.setString(2, musicVO.getMusician());
+			stmt.setString(3, musicVO.getDirector());
+			stmt.setString(4, musicVO.getLyrics());
+			stmt.setString(5, musicVO.getMp3File());
+			stmt.setString(6, musicVO.getMusicId());
+			
+			return stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+	}
+	
+	@Override
 	public int updateLikeCount(String musicId) {
 		
 		try {
@@ -423,7 +474,7 @@ public class MusicDaoImpl implements MusicDao {
 			StringBuffer query = new StringBuffer();
 			query.append(" DELETE ");
 			query.append(" FROM		MSC ");
-			query.append(" WHERE	MSC_ID = ? ");
+			query.append(" WHERE		MSC_ID = ? ");
 			
 			stmt = conn.prepareStatement(query.toString());
 			stmt.setString(1, musicId);

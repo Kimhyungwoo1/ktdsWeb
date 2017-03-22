@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+.grid, .login {
+	border: 1px solid #DDDDDD;
+	/* border: 1px dotted; */
+	/* border: 1px dashed; */
+}
+
+.grid {
+	background-color: #FFFFFF;
+	width: 709px;
+	margin-right: 3px; 
+	display: inline-block; /* <div> 태그를 한 줄로 보여주기 (Line block */
+}
+
+.login {
+	vertical-align: top; /* 수직 정렬 */
+	width: 242px;
+	background-color: #c70c0c;
+	color: #FFFFFF;
+	display: inline-block;
+	padding: 3px;
+}
+
+.grid > .pagingLink {
+	width: 30px;
+	margin: 0 auto;
+	display: inline-block;
+}
+
+.grid > .gotoWrite {
+	margin: 0 auto;
+	display: inline-block;
+}
+
+.grid > .bottomMenu {
+	text-align: center;
+}

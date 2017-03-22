@@ -151,7 +151,7 @@
     <filter-name>LoginCheckFilter</filter-name>
     <filter-class>com.melon.common.web.LoginCheckFilter</filter-class>
   </filter>
-<!--   <filter-mapping>
+  <filter-mapping>
     <filter-name>LoginCheckFilter</filter-name>
     <url-pattern>/artist/*</url-pattern>
   </filter-mapping>
@@ -162,8 +162,8 @@
   <filter-mapping>
     <filter-name>LoginCheckFilter</filter-name>
     <url-pattern>/music/*</url-pattern>
-  </filter-mapping>-->
-  <servlet> 
+  </filter-mapping>
+  <servlet>
     <description></description>
     <display-name>DoLikeCoutnServlet</display-name>
     <servlet-name>DoLikeCoutnServlet</servlet-name>
@@ -172,5 +172,35 @@
   <servlet-mapping>
     <servlet-name>DoLikeCoutnServlet</servlet-name>
     <url-pattern>/user/likecount</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewOrDoDeleteArtistServlet</display-name>
+    <servlet-name>ViewOrDoDeleteArtistServlet</servlet-name>
+    <servlet-class>com.melon.artist.web.ViewOrDoDeleteArtistServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewOrDoDeleteArtistServlet</servlet-name>
+    <url-pattern>/artist/delete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoDeleteServlet</display-name>
+    <servlet-name>DoDeleteServlet</servlet-name>
+    <servlet-class>com.melon.user.web.DoDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoDeleteServlet</servlet-name>
+    <url-pattern>/music/delete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewAndDoModifyServler</display-name>
+    <servlet-name>ViewAndDoModifyServler</servlet-name>
+    <servlet-class>com.melon.music.web.ViewAndDoModifyServler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewAndDoModifyServler</servlet-name>
+    <url-pattern>/music/modify</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+.detail {
+	background-color: #ffffff;
+	width: 709px;
+	margin-right: 3px; 
+	display: inline-block; /* <div> 태그를 한 줄로 보여주기 (Line block */
+	border: 1px solid #DDDDDD;
+}
+
+.detail > h1 {
+	text-align: center;
+}
+
+.detail > hr {
+	border: 1px dashed #DDDDDD;
+	width: 589px;
+}
+
+.detail > .author, .detail > p, .detail > .controls {
+	margin: 0 auto;
+	width: 579px;
+	padding-left: 10px;
+}
+
+/* cascade (상속) */
+.detail > p {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 10px;
+	background-color: #eaeaea;
+}
+
+.detail > .controls {
+	padding-bottom: 10px;
+}

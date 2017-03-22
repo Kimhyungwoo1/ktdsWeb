@@ -44,13 +44,18 @@ public class MusicServiceImpl implements MusicService{
 //			int userPoint = userVO.getUserPoint();
 //			userVO.setUserPoint(userPoint - 5);
 //		}
-		
+//		
 		return musicBiz.getOneMusic(musicId);
 	}
 
 	@Override
 	public boolean deleteOneMusic(String musicId) {
 		return musicBiz.deleteOneMusic(musicId);
+	}
+
+	@Override
+	public boolean updateOneMusic(MusicVO musicVO) {
+		return musicBiz.updateOneMusics(musicVO);
 	}
 
 }

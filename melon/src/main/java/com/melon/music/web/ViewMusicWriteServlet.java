@@ -34,7 +34,7 @@ public class ViewMusicWriteServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("_USER_");
 
-		if (userVO.getAuthorizationId().equals(AuthConst.ADMIN_USER)) {
+		if (userVO.getAuthorizationId().equals(AuthConst.NOMAL_USER)) {
 			response.sendError(404);
 		} else if (userVO.getAuthorizationId().equals(AuthConst.OPERATOR_USER)
 				|| userVO.getAuthorizationId().equals(AuthConst.ADMIN_USER)) {
@@ -50,7 +50,7 @@ public class ViewMusicWriteServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("_USER_");
 
-		if (userVO.getAuthorizationId().equals(AuthConst.ADMIN_USER)) {
+		if (userVO.getAuthorizationId().equals(AuthConst.NOMAL_USER)) {
 			response.sendError(404);
 		} 
 		else if (userVO.getAuthorizationId().equals(AuthConst.OPERATOR_USER) || userVO.getAuthorizationId().equals(AuthConst.ADMIN_USER)) {

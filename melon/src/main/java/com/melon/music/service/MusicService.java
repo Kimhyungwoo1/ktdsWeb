@@ -18,4 +18,5 @@ public interface MusicService {
 	
 	public boolean updateLikeCount(String musicId);
 	
+	public boolean updateOneMusic(MusicVO musicVO);
 }

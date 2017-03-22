@@ -18,4 +18,6 @@ public interface MusicDao {
 	public int deleteOneMusic(String musicId);
 	
 	public int updateLikeCount(String musicId);
+	
+	public int updateOneMusic(MusicVO musicVO);
 }

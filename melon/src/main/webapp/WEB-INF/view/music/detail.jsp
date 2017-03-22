@@ -30,9 +30,7 @@
 </script>
 </head>
 <body>
-<div id="likeCountss">
-<p id="likeCounts">${music.likeCount}</p>
-</div>
+<div id="likeCountss"><p id="likeCounts">${music.likeCount}</p></div>
 	<div id="total">
 		<input type="hidden" id="musicId" value="${music.musicId}" />
 		

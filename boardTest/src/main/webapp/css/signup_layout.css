@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+.join {
+	background-color: #ffffff;
+	width: 709px;
+	margin-right: 3px; 
+	display: inline-block; /* <div> 태그를 한 줄로 보여주기 (Line block */
+	border: 1px solid #DDDDDD;
+}
+
+/* .join > .form {
+	margin: 0 auto;
+	width: 549px;
+	padding-left: 10px;
+} */
+
+.controls {
+	width: 549px;
+	margin: 0 auto;
+}
+
+table {
+	
+	width: 549px;
+	margin: 0 auto;
+}
+
+tr {
+	margin : 3px;
+}

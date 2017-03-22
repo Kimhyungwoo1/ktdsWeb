@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	$().ready(function() {
 		<c:if test="${isAdminUser || isOperatorUser}">
-		$("input[type=button]").click(function() {
+		$("#artistInsert").click(function() {
 			
 			var writeDiv = $("<div id='writeDiv'></div>");
 			writeDiv.css({
@@ -38,7 +38,7 @@
 	
 	<c:choose>
 		<c:when test="${isAdminUser || isOperatorUser}" >
-			<input type="button" value="아티스트 등록" />
+			<input id="artistInsert" type="button" value="아티스트 등록" />
 		</c:when>
 	</c:choose>
 	

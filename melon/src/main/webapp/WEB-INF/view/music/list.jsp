@@ -10,22 +10,25 @@
 <script type="text/javascript">
 	$().ready(function() {
 		<c:if test="${isAdminUser || isOperatorUser}">
-		$("input[type=button]").click(function() {
-			window.open("/melon/music/write?albumId=${param.albumId}", "음악 등록", "resizable=no,scrollbars=yes,toolbar=no,width=300px,height=500px,menubars=no")
+		$("#musicInsert").click(function() {
+			window.open("/melon/music/write?albumId=${param.albumId}", "resizable=no,scrollbars=yes,toolbar=no,width=300px,height=500px,menubars=no")
 		});
-		
-		$(".play").click(function() {
-			var mp = $(this).data("mp");
-			var albumid = $(this).data("albumid")
-			
-			var source = $("<source src='' type='audio/mp3'></source>");
-			source.attr("src", '/melon/mp3/' + albumid + "/" + mp);
-			
-			$("#mp3player").find("video").html(source);
-			//$("#mp3player").find("video")[0].load();
-			$("#mp3player").find("video")[0].play();
-			
+		$("#musicModify").click(function() {
+			window.open("/melon/music/modify?musicId=" + $("input[name=check]:checked").val())
+			});
 		});
+		$("#musicDelete").click(function() {
+			$.post("/melon/music/delete", {
+				"musicId" : $("input[name=check]:checked").val()
+				
+			}, function(response) {
+				if ( response == "ok" ){
+					location.reload();
+				}
+				else {
+					alert("실패");
+				}
+			});
 		</c:if>
 	});
 </script>
@@ -34,14 +37,26 @@
 
 	<c:choose>
 		<c:when test="${isOperatorUser || isAdminUser}">
-			<input type="button" value="MP3 추가">
+			<input id="musicInsert" type="button" value="MP3 추가">
 		</c:when>
 	</c:choose>
+	<c:choose>
+		<c:when test="${isOperatorUser || isAdminUser}">
+			<input id="musicModify" type="button" value="MP3 수정">
+		</c:when>
+	</c:choose>
+	<c:choose>
+		<c:when test="${isOperatorUser || isAdminUser}">
+			<input id="musicDelete" type="button" value="MP3 삭제">
+		</c:when>
+	</c:choose>
+	
 
 	
 	<p>총 ${totalCount}건의 음악이 검색되었습니다.</p>
 	<table>
 		<tr>
+			<td></td>
 			<td>번호</td>
 			<td>곡 명</td>
 			<td>아티스트</td>
@@ -50,6 +65,7 @@
 		</tr>
 	<c:forEach items="${musicList}" var="music" varStatus="index">
 		<tr>
+			<td><input type="checkbox" name="check" value="${music.musicId}" /></td>
 			<td>${index.index + 1}</td>
 			<td>
 				<a href="/melon/music/detail?musicId=${music.musicId}">${music.title}</a>
@@ -57,7 +73,6 @@
 			<td>${music.albumVO.artistVO.member}</td>
 			<td>${music.albumVO.albumName}</td>
 			<td>${music.likeCount}</td>
-			<td class="play" data-albumid="${music.albumId}" data-mp="${music.mp3File}">듣기<td>
 		</tr>
 	</c:forEach>
 	</table>
@@ -65,8 +80,5 @@
 		${pager}
 	</form>
 	
-	<div id="mp3player">
-		<video controls="controls" preload="auto" buffered></video>
-	</div>
 </body>
 </html>
